@@ -1,12 +1,13 @@
 import React from "react";
-import SpinningWheel from "./components/SpinningWheel";
+import SpinningWheel from "./components/SpinningWheel/SpinningWheel";
+import Header from "./components/Header/Header";
 
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <SpinningWheel />
+      <Header />
     </div>
   );
 }

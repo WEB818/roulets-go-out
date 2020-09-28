@@ -6,7 +6,7 @@ export default class Header extends Component {
   render() {
     let textPath = `<textPath xlink:href="#curve">rouLet's Go Out</textPath>`;
     return (
-      <>
+      <Circle>
         <svg viewBox="0 0 400 400">
           <path
             id="curve"
@@ -25,7 +25,7 @@ export default class Header extends Component {
             dangerouslySetInnerHTML={{ __html: textPath }}
           ></text>
         </svg>
-      </>
+      </Circle>
     );
   }
 }

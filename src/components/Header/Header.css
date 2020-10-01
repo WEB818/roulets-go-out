@@ -4,6 +4,7 @@
 }
 #curve {
   stroke-dasharray: 500;
+
   animation: dash 5s infinite;
 }
 

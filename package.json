@@ -2,6 +2,7 @@
   "name": "roulette",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://api.yelp.com/v3/businesses",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",

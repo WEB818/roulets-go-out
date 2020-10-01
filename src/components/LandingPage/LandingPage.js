@@ -17,7 +17,7 @@ export default function LandingPage() {
           <ListItem>Ask me out</ListItem>
           <ListItem>Play rouLet's Go Out!</ListItem>
         </ol>
-        <Link to="/plan">
+        <Link to="/play">
           <Button>Get Started</Button>
         </Link>
       </Instructions>

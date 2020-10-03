@@ -11,9 +11,12 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      restaurants: [],
       restaurant: "",
       type: "fun",
+      details: "",
       showDetails: false,
+      setDate: false,
       error: null,
     };
   }
@@ -28,8 +31,11 @@ class App extends Component {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
-  handleSearch = (place) => {
-    this.setState({ restaurant: place });
+  handleSearch = (arr) => {
+    let length = arr.length - 1;
+    let index = this.getRandomIndex(length);
+    let restaurant = arr[index];
+    this.setState({ restaurants: arr, restaurant: restaurant });
   };
 
   handleTypeChange = (ev) => {
@@ -44,7 +50,6 @@ class App extends Component {
     ev.preventDefault();
     let location = ev.target.location;
     let term = ev.target.type;
-    let index = this.getRandomIndex(49);
 
     return fetch(
       `/search?location=${location.value}&term=${term.value}&limit=50`,
@@ -57,7 +62,7 @@ class App extends Component {
       }
     )
       .then((res) => res.json())
-      .then((res) => this.handleSearch(res.businesses[index]))
+      .then((res) => this.handleSearch(res.businesses))
       .then(this.handleDisplayDetails())
       .catch((err) => this.setState({ error: err }));
   };
@@ -66,9 +71,13 @@ class App extends Component {
     this.setState({ restaurant: "", showDetails: false });
   };
 
+  handleDateRequest = () => {
+    this.setState({ setDate: true });
+  };
   render() {
     const { restaurant, type } = this.state;
 
+    let spinning = "Spinning...";
     return (
       <div>
         <Header />
@@ -80,16 +89,19 @@ class App extends Component {
             <DateDetails
               getLocation={this.handlePlay}
               type={type}
-              restaurant={restaurant.name}
-              image={restaurant.image_url}
+              restaurant={restaurant ? restaurant.name : spinning}
               replay={this.handleReplay}
               onChange={this.handleTypeChange}
               onRedirect={this.redirectToTarget}
               details={this.state.showDetails}
-              price={restaurant.price}
-              rating={restaurant.rating}
-              address={restaurant.display_address}
-              link={restaurant.url}
+              price={restaurant ? restaurant.price : ""}
+              rating={restaurant ? restaurant.rating : ""}
+              address={
+                restaurant ? restaurant.location.display_address.join(", ") : ""
+              }
+              link={restaurant ? restaurant.url : ""}
+              dateRequest={this.handleDateRequest}
+              itsADate={this.state.setDate}
             />
           </Route>
 

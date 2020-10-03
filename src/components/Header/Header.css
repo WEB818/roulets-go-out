@@ -1,10 +1,9 @@
 .text-path {
-  fill: #ea4b8b;
+  fill: #ffffff;
   font-family: "Courgette", cursive;
 }
 #curve {
   stroke-dasharray: 500;
-
   animation: dash 5s infinite;
 }
 

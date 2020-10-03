@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 
 import DateRequest from "../DateRequest/DateRequest";
-import { Button } from "../Utils/Utils.styled";
+import { Container, BtnContainer } from "./DisplayDateDetails.styled";
+import { Button, LinkTo } from "../Utils/Utils.styled";
 
 export default class DisplayDate extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ export default class DisplayDate extends Component {
     if (price === "$$$$") {
       return (
         <div>
-          <h2>Baby, I'm worth it</h2>
+          <h2>Baby, I'm worth it.</h2>
           <iframe
             src="https://giphy.com/embed/d47IFWkfzgr4DASQ"
             title="worth it giphy"
@@ -24,34 +25,37 @@ export default class DisplayDate extends Component {
             className="giphy-embed"
             allowFullScreen
           ></iframe>
-          <p>
-            <a href="https://giphy.com/gifs/fifthharmony-fifth-harmony-d47IFWkfzgr4DASQ">
-              via GIPHY
-            </a>
-          </p>
         </div>
       );
     }
   }
 
   displayRating(rating) {
-    if (rating > 4.4) {
+    if (rating > 4.4 && this.props.restaurant) {
       return (
         <div>
           <h3>
-            <a href={this.props.link} target="_blank" rel="noopener noreferrer">
+            <LinkTo
+              href={this.props.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {this.props.restaurant}
-            </a>{" "}
+            </LinkTo>{" "}
             is rated {rating} out of 5. You have good taste!
           </h3>
         </div>
       );
-    } else {
+    } else if (this.props.restaurant) {
       return (
         <h3>
-          <a href={this.props.link} target="_blank" rel="noopener noreferrer">
+          <LinkTo
+            href={this.props.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {this.props.restaurant}
-          </a>
+          </LinkTo>
         </h3>
       );
     }
@@ -73,25 +77,39 @@ export default class DisplayDate extends Component {
     this.setState({ setDate: true });
   };
 
-  render() {
+  renderDateDetails() {
     let description = this.displayMessage(this.props.price);
     let score = this.displayRating(this.props.rating);
     let type = this.displayType(this.props.type);
 
     return (
-      <div>
-        <h1>rouLet's go here for {type}!</h1>
-
-        {description}
+      <Container>
+        <h1>Roulet's go here for {type}!</h1>
         {score}
         <p>{this.props.address}</p>
+        {description}
+        <BtnContainer>
+          <Button onClick={this.props.replay}>Spin Again</Button>
+          <Button onClick={this.props.dateRequest}>Ask Me Out</Button>
+        </BtnContainer>
+      </Container>
+    );
+  }
 
-        <Button onClick={this.props.replay}>Spin Again</Button>
+  render() {
+    const { itsADate } = this.props;
 
-        <Button onClick={this.itsADate}>Ask Me Out</Button>
-
-        <DateRequest />
-      </div>
+    return (
+      <>
+        {itsADate ? (
+          <DateRequest
+            place={this.props.restaurant}
+            address={this.props.address}
+          />
+        ) : (
+          this.renderDateDetails()
+        )}
+      </>
     );
   }
 }

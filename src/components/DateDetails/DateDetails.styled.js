@@ -4,15 +4,11 @@ export const DateForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
   height: 40vh;
+  width: 100vw;
 `;
-export const SelectWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: space-between;
-  justify-content: space-between;
-`;
+
 export const Select = styled.div`
   display: flex;
   flex-direction: row;

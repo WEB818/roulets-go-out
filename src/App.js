@@ -5,7 +5,6 @@ import Header from "./components/Header/Header";
 import LandingPage from "./components/LandingPage/LandingPage";
 import DateDetails from "./components/DateDetails/DateDetails";
 
-import DateRequest from "./components/DateRequest/DateRequest";
 import "./App.css";
 class App extends Component {
   constructor(props) {
@@ -17,7 +16,7 @@ class App extends Component {
       details: "",
       showDetails: false,
       setDate: false,
-      error: null,
+      error: false,
     };
   }
 
@@ -46,6 +45,10 @@ class App extends Component {
     this.setState({ showDetails: true });
   };
 
+  handleError = (err) => {
+    this.setState({ error: true });
+  };
+
   handlePlay = (ev) => {
     ev.preventDefault();
     let location = ev.target.location;
@@ -57,22 +60,22 @@ class App extends Component {
         headers: {
           Authorization:
             "Bearer 2APMxAYvJrfmFebWwHD2JlTlAt76NaBbxBuxv5ingWBb9Y82tNAi0spswrA5GiVmOtiB8QaDV_00SMQa3ELaBXbuFFDIevpWdd6628WPlj7PKfnMRM55PWo2eGtyX3Yx",
-          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Origin": "https://roulets-go-out.vercel.app/",
         },
       }
     )
       .then((res) => res.json())
       .then((res) => this.handleSearch(res.businesses))
       .then(this.handleDisplayDetails())
-      .catch((err) => this.setState({ error: err }));
+      .catch((err) => this.handleError(err));
   };
 
   handleReplay = () => {
-    this.setState({ restaurant: "", showDetails: false });
+    this.setState({ restaurant: "", showDetails: false, error: false });
   };
 
   handleDateRequest = () => {
-    this.setState({ setDate: true });
+    this.setState({ setDate: true, error: false });
   };
   render() {
     const { restaurant, type } = this.state;
@@ -101,11 +104,8 @@ class App extends Component {
               link={restaurant ? restaurant.url : ""}
               dateRequest={this.handleDateRequest}
               itsADate={this.state.setDate}
+              error={this.state.error}
             />
-          </Route>
-
-          <Route path="/message">
-            <DateRequest />
           </Route>
         </Switch>
       </div>

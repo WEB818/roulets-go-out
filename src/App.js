@@ -61,6 +61,7 @@ class App extends Component {
           Authorization:
             "Bearer 2APMxAYvJrfmFebWwHD2JlTlAt76NaBbxBuxv5ingWBb9Y82tNAi0spswrA5GiVmOtiB8QaDV_00SMQa3ELaBXbuFFDIevpWdd6628WPlj7PKfnMRM55PWo2eGtyX3Yx",
           "Access-Control-Allow-Origin": "https://roulets-go-out.vercel.app/",
+          "Content-Type": "application/json",
         },
       }
     )

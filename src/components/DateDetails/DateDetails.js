@@ -26,7 +26,7 @@ export default class DateDetails extends Component {
             <option value="drinks outdoor seating + takeout">Drinks</option>
             <option value="dessert outdoor seating + takeout">Dessert</option>
             <option value="walk">Go for a walk</option>
-            <option value="comedy club">Comedy Show</option>
+            <option value="picnic">Go on a picnic</option>
           </Selection>
         </Select>
         <Select>
@@ -64,7 +64,11 @@ export default class DateDetails extends Component {
     const { details, error } = this.props;
     return (
       <>
-        {error ? <p>Something went wrong. Please play again later.</p> : ""}
+        {error ? (
+          <p>Something went wrong. Please play again later. {error}</p>
+        ) : (
+          ""
+        )}
         {details ? (
           <div>{this.renderDetails()}</div>
         ) : (

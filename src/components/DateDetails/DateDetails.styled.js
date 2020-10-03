@@ -7,6 +7,10 @@ export const DateForm = styled.form`
   justify-content: space-around;
   height: 40vh;
   width: 100vw;
+
+  @media (min-width: 1440px) {
+    height: 30vh;
+  }
 `;
 
 export const Select = styled.div`

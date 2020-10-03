@@ -16,7 +16,7 @@ class App extends Component {
       details: "",
       showDetails: false,
       setDate: false,
-      error: false,
+      error: "",
     };
   }
 
@@ -46,7 +46,7 @@ class App extends Component {
   };
 
   handleError = (err) => {
-    this.setState({ error: true });
+    this.setState({ error: err.message });
   };
 
   handlePlay = (ev) => {

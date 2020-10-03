@@ -64,8 +64,8 @@ export default class DisplayDate extends Component {
   displayType(type) {
     if (type === "walk") {
       return "a walk";
-    } else if (type === "comedy club") {
-      return "a laugh";
+    } else if (type === "picnic") {
+      return "a picnic";
     } else if (type === "coffee tea outdoor seating") {
       return "coffee or tea";
     } else {

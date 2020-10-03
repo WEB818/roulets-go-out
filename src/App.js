@@ -46,7 +46,7 @@ class App extends Component {
   };
 
   handleError = (err) => {
-    this.setState({ error: err.message });
+    this.setState({ error: err });
   };
 
   handlePlay = (ev) => {
@@ -65,10 +65,12 @@ class App extends Component {
         },
       }
     )
-      .then((res) => res.json())
+      .then((res) =>
+        !res.ok ? res.json().then((err) => Promise.reject(err)) : res.json()
+      )
       .then((res) => this.handleSearch(res.businesses))
       .then(this.handleDisplayDetails())
-      .catch((err) => this.handleError(err));
+      .catch((err) => this.handleError(err.message));
   };
 
   handleReplay = () => {

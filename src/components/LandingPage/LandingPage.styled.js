@@ -1,20 +1,14 @@
 import styled from "styled-components";
 
 export const HowItWorks = styled.h1`
-  width: 233px;
-  height: 49px;
-  left: 160px;
-  top: 251px;
-
-  font-family: Cabin;
-  font-style: normal;
+  font-family: "Courgette", cursive;
+  text-decoration: underline;
   font-weight: normal;
-  font-size: 36px;
-  line-height: 44px;
-
-  color: #000000;
+  color: #ea4b8b;
 `;
-export const ListItem = styled.li``;
+export const ListItem = styled.li`
+  text-align: left;
+`;
 export const Instructions = styled.div`
   display: flex;
   flex-direction: column;

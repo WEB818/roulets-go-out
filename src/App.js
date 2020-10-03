@@ -77,7 +77,6 @@ class App extends Component {
   render() {
     const { restaurant, type } = this.state;
 
-    let spinning = "Spinning...";
     return (
       <div>
         <Header />
@@ -89,7 +88,7 @@ class App extends Component {
             <DateDetails
               getLocation={this.handlePlay}
               type={type}
-              restaurant={restaurant ? restaurant.name : spinning}
+              restaurant={restaurant ? restaurant.name : ""}
               replay={this.handleReplay}
               onChange={this.handleTypeChange}
               onRedirect={this.redirectToTarget}

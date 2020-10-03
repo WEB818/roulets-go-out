@@ -13,9 +13,9 @@ export default function LandingPage() {
       <Instructions>
         <HowItWorks>How It Works</HowItWorks>
         <ol>
-          <ListItem>Pick date/time</ListItem>
+          <ListItem>Pick a date and location</ListItem>
+          <ListItem>Play Roulet's go out!</ListItem>
           <ListItem>Ask me out</ListItem>
-          <ListItem>Play rouLet's Go Out!</ListItem>
         </ol>
         <Link to="/play">
           <Button>Get Started</Button>

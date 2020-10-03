@@ -88,7 +88,7 @@ class App extends Component {
             <DateDetails
               getLocation={this.handlePlay}
               type={type}
-              restaurant={restaurant ? restaurant.name : ""}
+              restaurant={restaurant ? restaurant.name : "Spinning..."}
               replay={this.handleReplay}
               onChange={this.handleTypeChange}
               onRedirect={this.redirectToTarget}

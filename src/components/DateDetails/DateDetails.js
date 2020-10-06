@@ -64,11 +64,7 @@ export default class DateDetails extends Component {
     const { details, error } = this.props;
     return (
       <>
-        {error ? (
-          <p>Something went wrong. Please play again later. {error}</p>
-        ) : (
-          ""
-        )}
+        {error ? <p>Something went wrong. Please play again later.</p> : ""}
         {details ? (
           <div>{this.renderDetails()}</div>
         ) : (

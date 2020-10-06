@@ -13,7 +13,7 @@ export default function LandingPage() {
       <Instructions>
         <HowItWorks>How It Works</HowItWorks>
         <ol>
-          <ListItem>Pick a date and location</ListItem>
+          <ListItem>Pick an activity and location</ListItem>
           <ListItem>Play Roulet's go out!</ListItem>
           <ListItem>Ask me out</ListItem>
         </ol>

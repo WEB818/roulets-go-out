@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
+import config from "./config";
 
 import Header from "./components/Header/Header";
 import LandingPage from "./components/LandingPage/LandingPage";
@@ -30,23 +31,25 @@ class App extends Component {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
-  handleSearch = (arr) => {
+  handleSearch = (busObj) => {
+    let arr = busObj.businesses;
     let length = arr.length - 1;
     let index = this.getRandomIndex(length);
     let restaurant = arr[index];
-    this.setState({ restaurants: arr, restaurant: restaurant });
+    this.setState({
+      restaurants: arr,
+      restaurant: restaurant,
+      showDetails: true,
+    });
   };
 
   handleTypeChange = (ev) => {
     this.setState({ type: ev.target.value });
   };
 
-  handleDisplayDetails = () => {
-    this.setState({ showDetails: true });
-  };
-
   handleError = (err) => {
-    this.setState({ error: err });
+    this.setState({ error: err.message });
+    console.log(err.message);
   };
 
   handlePlay = (ev) => {
@@ -55,22 +58,19 @@ class App extends Component {
     let term = ev.target.type;
 
     return fetch(
-      `/search?location=${location.value}&term=${term.value}&limit=50`,
+      `${config.API_ENDPOINT}/search?location=${location.value}&term=${term.value}&limit=50`,
       {
         headers: {
-          Authorization:
-            "Bearer 2APMxAYvJrfmFebWwHD2JlTlAt76NaBbxBuxv5ingWBb9Y82tNAi0spswrA5GiVmOtiB8QaDV_00SMQa3ELaBXbuFFDIevpWdd6628WPlj7PKfnMRM55PWo2eGtyX3Yx",
-          "Access-Control-Allow-Origin": "https://roulets-go-out.vercel.app/",
+          Authorization: `Bearer ${config.API_KEY}`,
+          "Access-Control-Allow-Origin": "https://roulets-go-out.vercel.app",
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
       }
     )
-      .then((res) =>
-        !res.ok ? res.json().then((err) => Promise.reject(err)) : res.json()
-      )
-      .then((res) => this.handleSearch(res.businesses))
-      .then(this.handleDisplayDetails())
-      .catch((err) => this.handleError(err.message));
+      .then((res) => res.json())
+      .then((businesses) => this.handleSearch(businesses))
+      .catch((err) => this.handleError(err));
   };
 
   handleReplay = () => {

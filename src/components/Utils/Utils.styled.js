@@ -10,19 +10,21 @@ export const Button = styled.button`
 
 export const Label = styled.label`
   min-width: 100px;
-  text-align: left;
+  padding: 0 10px;
 `;
 
 export const Selection = styled.select`
   border: none;
+  border-bottom: 1px solid #ea4b8b;
   max-width: 200px;
+  width: 150px;
   font-family: "Noto Sans TC", sans-serif;
-  margin: 30px auto;
+  margin: 10px;
 `;
 
 export const Input = styled.input`
-  max-width: 200px;
-
+  max-width: 150px;
+  text-align: center;
   border: none;
   border-bottom: 1px solid #ea4b8b;
 `;
@@ -30,7 +32,7 @@ export const Input = styled.input`
 export const TextArea = styled.textarea`
   height: 100px;
   width: 300px;
-  margin: 20px auto;
+  margin: 10px;
   font-family: "Noto Sans TC", sans-serif;
 `;
 

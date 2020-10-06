@@ -6,6 +6,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: 50%;
+  padding: 0 10px;
 `;
 export const BtnContainer = styled.div`
   display: flex;

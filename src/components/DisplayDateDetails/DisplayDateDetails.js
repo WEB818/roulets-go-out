@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import DateRequest from "../DateRequest/DateRequest";
 import { Container, BtnContainer } from "./DisplayDateDetails.styled";
 import { Button, LinkTo } from "../Utils/Utils.styled";
-
 export default class DisplayDate extends Component {
   constructor(props) {
     super(props);

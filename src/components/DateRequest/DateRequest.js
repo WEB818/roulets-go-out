@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Container, Form } from "./DateRequest.styled";
+import config from "../../config";
+import {
+  Container,
+  Form,
+  LabelContainer,
+  Message,
+  SignOff,
+} from "./DateRequest.styled";
 import {
   Button,
   Input,
@@ -34,10 +41,10 @@ export default class DateRequest extends Component {
         type = "text";
       }
       return (
-        <div>
+        <LabelContainer>
           <Label htmlFor={input}>Enter {label}</Label>
           <Input id={input} type={type} name="contact" />
-        </div>
+        </LabelContainer>
       );
     }
   }
@@ -53,23 +60,20 @@ export default class DateRequest extends Component {
   postEmail = (ev) => {
     ev.preventDefault();
 
-    return fetch(
-      "https://td4hbuwu6b.execute-api.us-west-2.amazonaws.com/dev/email/send",
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          "Access-Control-Request-Method": "POST",
-        },
-        body: JSON.stringify({
-          name: ev.target.name.value,
-          method: ev.target.method.value,
-          contact: ev.target.contact.value,
-          content: ev.target.content.value,
-          message: ev.target.message.value,
-        }),
-      }
-    )
+    return fetch(`${config.CONTACT_API_ENDPOINT}`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "Access-Control-Request-Method": "POST",
+      },
+      body: JSON.stringify({
+        name: ev.target.name.value,
+        method: ev.target.method.value,
+        contact: ev.target.contact.value,
+        content: ev.target.content.value,
+        message: ev.target.message.value,
+      }),
+    })
       .then((res) =>
         !res.ok ? res.json().then((err) => Promise.reject(err)) : res.json()
       )
@@ -101,7 +105,7 @@ export default class DateRequest extends Component {
           required
           onChange={(ev) => this.selectMethodOfContact(ev.target.value)}
         >
-          <option value="">Select method of contact</option>
+          <option value="">Method of contact</option>
           <option value="text">Text/Call</option>
           <option value="email">Email</option>
           <option value="app">Dating App</option>
@@ -123,10 +127,10 @@ export default class DateRequest extends Component {
 
   renderSuccessMessage() {
     return (
-      <div>
+      <Message>
         <p>Thanks for sending me the details. I'll reply to you soon!</p>
-        <p>xo, Amy</p>
-      </div>
+        <SignOff>xo, Amy</SignOff>
+      </Message>
     );
   }
 

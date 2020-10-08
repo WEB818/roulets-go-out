@@ -62,7 +62,8 @@ class App extends Component {
       {
         headers: {
           Authorization: `Bearer ${config.API_KEY}`,
-          "Access-Control-Allow-Origin": "https://roulets-go-out.vercel.app",
+          "Access-Control-Allow-Origin":
+            "https://roulets-go-out.vercel.app/play",
           "Content-Type": "application/json",
           Accept: "application/json",
         },
@@ -105,6 +106,7 @@ class App extends Component {
                 restaurant ? restaurant.location.display_address.join(", ") : ""
               }
               link={restaurant ? restaurant.url : ""}
+              placeId={restaurant ? restaurant.id : ""}
               dateRequest={this.handleDateRequest}
               itsADate={this.state.setDate}
               error={this.state.error}

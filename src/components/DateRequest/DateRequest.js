@@ -65,6 +65,7 @@ export default class DateRequest extends Component {
       headers: {
         "content-type": "application/json",
         "Access-Control-Request-Method": "POST",
+        "Access-Control-Allow-Origin": "https://roulets-go-out.vercel.app/",
       },
       body: JSON.stringify({
         name: ev.target.name.value,

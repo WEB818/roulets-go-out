@@ -6,6 +6,7 @@ export const Button = styled.button`
   color: white;
   border: none;
   border-radius: 4px;
+  margin: 30px;
 `;
 
 export const Label = styled.label`

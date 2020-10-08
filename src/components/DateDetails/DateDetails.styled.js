@@ -5,20 +5,27 @@ export const DateForm = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  height: 40vh;
+  height: 90vh;
   width: 100vw;
+  overflow: hidden;
+`;
 
-  @media (min-width: 1440px) {
-    height: 30vh;
-  }
+export const SelectWrapper = styled.div`
+  width: 100vw;
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 `;
 
 export const Select = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  width: 100%;
   align-items: center;
+  width: 100%;
+  padding: 10px;
 
   @media (min-width: 768px) {
     width: 30%;

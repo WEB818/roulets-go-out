@@ -1,12 +1,28 @@
 import React, { Component } from "react";
-
+import config from "../../config";
 import DateRequest from "../DateRequest/DateRequest";
-import { Container, BtnContainer } from "./DisplayDateDetails.styled";
+import {
+  MapContainer,
+  Container,
+  BtnContainer,
+} from "./DisplayDateDetails.styled";
 import { Button, LinkTo } from "../Utils/Utils.styled";
 export default class DisplayDate extends Component {
   constructor(props) {
     super(props);
     this.state = { setDate: false };
+  }
+
+  displayMap(location) {
+    let url = location.replace(/\s/g, "+");
+
+    return (
+      <MapContainer
+        src={`https://www.google.com/maps/embed/v1/place?key=${config.MAPS_EMBED_API_KEY}&q=${url}`}
+        title="map of location"
+        allowFullScreen
+      ></MapContainer>
+    );
   }
 
   displayMessage(price) {
@@ -80,12 +96,12 @@ export default class DisplayDate extends Component {
     let description = this.displayMessage(this.props.price);
     let score = this.displayRating(this.props.rating);
     let type = this.displayType(this.props.type);
-
+    let map = this.displayMap(this.props.restaurant);
     return (
       <Container>
         <h1>Roulet's go here for {type}!</h1>
         {score}
-        <p>{this.props.address}</p>
+        {map}
         {description}
         <BtnContainer>
           <Button onClick={this.props.replay}>Spin Again</Button>

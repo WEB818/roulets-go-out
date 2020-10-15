@@ -38,6 +38,5 @@ export const TextArea = styled.textarea`
 `;
 
 export const LinkTo = styled.a`
-  text-decoration: none;
   color: #ea4b8b;
 `;
